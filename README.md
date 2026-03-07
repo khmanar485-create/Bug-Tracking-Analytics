@@ -64,11 +64,8 @@ It demonstrates database design, SQL analytics, and business insights for softwa
 
 
 |  **Column**  |  **Type**  |  **Description**  |
-
 | :----------- | :--------- | :---------------- |
-
 | user_id      | integer    | Primary key       |
-
 | name         | varchar    | Developer name    |
 
 
@@ -78,21 +75,13 @@ It demonstrates database design, SQL analytics, and business insights for softwa
 
 
 |  **Column**       |  **Type**       |  **Description**                                         |
-
 | :---------------- | :-------------- | :------------------------------------------------------- |
-
 | bug_id            | integer         | Primary key                                              |
-
 | title             | varchar         | Short bug title                                          |
-
 | description       | text            | Detailed bug description                                 |
-
 | status            | varchar         | Bug status ('Open', 'In progress', 'Resolved', 'Closed') |
-
 | priority          | varchar         | Bug priority ('Low', 'Medium', 'High', 'Critical')       |
-
 | assigned_to       | integer         | FK → users.user_id                                       |
-
 | created_at        | timestamp       | Bug creation timestamp                                   |
 
 
@@ -114,13 +103,9 @@ It demonstrates database design, SQL analytics, and business insights for softwa
 
 
 |  **user_id**    |  **name**     |
-
 | :-------------- | :------------ |
-
 | 1               | Alice         |
-
 | 2               | Bob           |
-
 | 3               | Charlie       |
 
 
@@ -132,11 +117,8 @@ It demonstrates database design, SQL analytics, and business insights for softwa
 
 
 |  **bug_id**   |  **title**               |  **status**       |  **priority**     |  **assigned_to**   |  **created_at**                 |
-
 | :------------ | :----------------------- | :---------------- | :---------------- | :----------------- | :------------------------------ |
-
 | 1             | Login bug                | Closed            | High              | 1                  | 2025-12-21 16:27                |
-
 | 2             | Login with false infos   | Open              | Medium            | 3                  | 2025-12-27 16:41                |
 
 
