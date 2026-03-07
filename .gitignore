@@ -1,0 +1,15 @@
+# Eclipse
+.classpath
+.project
+.settings/
+bin/
+
+# Compiled Java
+*.class
+
+# Database credentials 
+config.properties
+
+# OS files
+Thumbs.db
+.DS_Store
