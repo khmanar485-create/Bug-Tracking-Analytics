@@ -42,6 +42,17 @@ It demonstrates database design, SQL analytics, and business insights for softwa
 
 
 
+\## Application Screenshots
+
+![Main Menu](screenshots/main_menu.png)
+*Figure 1: Main menu with all options*
+
+![Create Bugs](screenshots/bug_creation.png)
+*Figure 2: Reporting a new bug*
+
+![View Bugs](screenshots/view_bugs.png)
+*Figure 3: List of all bugs in the system*
+
 
 
 \## Database Schema
@@ -140,7 +151,7 @@ It demonstrates database design, SQL analytics, and business insights for softwa
 
 ```sql
 
-SELECT status, COUNT(\*) AS bug\_count
+SELECT status, COUNT(\*) AS bug_count
 
 FROM public.bugs
 
@@ -154,7 +165,7 @@ GROUP BY status;
 
 ```sql
 
-SELECT priority, COUNT(\*) AS bug\_count
+SELECT priority, COUNT(\*) AS bug_count
 
 FROM public.bugs
 
@@ -168,15 +179,15 @@ GROUP BY priority;
 
 ```sql
 
-SELECT u.name AS developer, COUNT(b.bug\_id) AS assigned\_bugs
+SELECT u.name AS developer, COUNT(b.bug_id) AS assigned_bugs
 
 FROM public.users u
 
-LEFT JOIN public.bugs b ON u.user\_id = b.assigned\_to
+LEFT JOIN public.bugs b ON u.user_id = b.assigned_to
 
 GROUP BY u.name
 
-ORDER BY assigned\_bugs DESC;
+ORDER BY assigned_bugs DESC;
 
 ```
 
@@ -186,15 +197,15 @@ ORDER BY assigned\_bugs DESC;
 
 ```sql
 
-SELECT bug\_id, title, status, priority, created\_at, 
+SELECT bug_id, title, status, priority, created_at, 
 
-&nbsp;      CURRENT\_DATE - created\_at::date AS days\_open
+&nbsp;      CURRENT_DATE - created_at::date AS days_open
 
 FROM public.bugs
 
 WHERE status IN ('Open', 'In progress')
 
-ORDER BY days\_open DESC;
+ORDER BY days_open DESC;
 
 ```
 
@@ -204,7 +215,7 @@ ORDER BY days\_open DESC;
 
 ```sql
 
-SELECT DATE\_TRUNC('month', created\_at) AS month, COUNT(\*) AS bug\_count
+SELECT DATE_TRUNC('month', created_at) AS month, COUNT(\*) AS bug_count
 
 FROM public.bugs
 
@@ -220,13 +231,76 @@ ORDER BY month;
 
 ```sql
 
-SELECT bug\_id, title, status, priority
+SELECT bug_id, title, status, priority
 
 FROM public.bugs
 
-WHERE assigned\_to IS NULL;
+WHERE assigned_to IS NULL;
 
 ```
+
+
+## Business Insights
+|       **Query**     |         **Business Question**           |            **What It Tells Us**           |
+| :------------------ | :-------------------------------------- | :------------------------------------------------- |
+| Bugs by Status      | How healthy is our development process? | Too many "Open" bugs = backlog risk                |
+| Bugs by Priority    | Are we focusing on critical issues?     | High/Critical bugs need immediate attention |
+| Developer Workload  | Who is overloaded?                      | Balance assignments across team                |
+| Aging Bugs          | Which bugs are stuck?                   | Old "Open" bugs need priority                      |
+| Monthly Trends      | Is bug reporting increasing?            | Spike might indicate quality issues              |
+| Unassigned Bugs     | Are bugs slipping through?              | Every bug needs an owner                           |
+
+
+## How to Run This Project
+
+### Prerequisites
+- Java 8 or higher
+- PostgreSQL 12 or higher
+- Eclipse IDE (recommended)
+
+### Database Setup
+1. Make sure PostgreSQL is installed and running
+2. Use the existing **postgres** database (it's created by default):
+   ```sql
+   -- No need to create a new database
+   -- Just connect to 'postgres'
+   ```
+3. Run the schema script to create tables:
+   ```bash
+   psql -d postgres -f database/schema.sql
+   ```
+4. Insert sample data:
+   ```bash
+   psql -d postgres -f database/sample_data.sql
+   ```
+
+### Java Setup
+1. Clone this repository
+2. Open Eclipse → File → Import → Existing Projects into Workspace
+3. Add PostgreSQL JDBC driver to build path
+4. Update database credentials in `DBConnection.java`:
+  ```java
+  private static final String URL = "jdbc:postgresql://localhost:5432/postgres";
+  private static final String USER = "postgres";
+  private static final String PASSWORD = "your_password"; // Change to your PostgreSQL password
+  ```
+5. Run Main.java
+
+
+### Run SQL Queries
+All analysis queries are listed in the **SQL Analysis Queries** section above. You can run them directly in:
+- **pgAdmin** (PostgreSQL's graphical interface)
+- **psql** command line
+- Any PostgreSQL client
+
+These queries help answer real business questions about:
+- Development process health (Bugs by Status)
+- Critical issue tracking (Bugs by Priority)
+- Team workload balance (Developer Workload)
+- Backlog management (Aging Bugs)
+- Quality trends over time (Monthly Bug Trend)
+- Assignment gaps (Unassigned Bugs)
+
 
 
 
