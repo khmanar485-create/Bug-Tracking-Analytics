@@ -63,13 +63,13 @@ It demonstrates database design, SQL analytics, and business insights for softwa
 
 
 
-| Column   | Type    | Description      |
+|  **Column**  |  **Type**  |  **Description**  |
 
-|----------|---------|------------------|
+| :----------- | :--------- | :---------------- |
 
-| user_id  | integer | Primary key      |
+| user_id      | integer    | Primary key       |
 
-| name     | varchar | Developer name   |
+| name         | varchar    | Developer name    |
 
 
 
@@ -77,9 +77,9 @@ It demonstrates database design, SQL analytics, and business insights for softwa
 
 
 
-| Column            | Type            | Description                                              |
+|  **Column**       |  **Type**       |  **Description**                                         |
 
-|-------------------|-----------------|----------------------------------------------------------|
+| :---------------- | :-------------- | :------------------------------------------------------- |
 
 | bug_id            | integer         | Primary key                                              |
 
@@ -113,15 +113,15 @@ It demonstrates database design, SQL analytics, and business insights for softwa
 
 
 
-| user_id    | name         |
+|  **user_id**    |  **name**     |
 
-|------------|--------------|
+| :-------------- | :------------ |
 
-| 1          | Alice        |
+| 1               | Alice         |
 
-| 2          | Bob          |
+| 2               | Bob           |
 
-| 3          | Charlie      |
+| 3               | Charlie       |
 
 
 
@@ -131,13 +131,13 @@ It demonstrates database design, SQL analytics, and business insights for softwa
 
 
 
-| bug_id   | title                 | status          | priority       | assigned_to   | created_at                 |
+|  **bug_id**   |  **title**               |  **status**       |  **priority**     |  **assigned_to**   |  **created_at**                 |
 
-|----------|-----------------------|-----------------|----------------|---------------|----------------------------|
+| :------------ | :----------------------- | :---------------- | :---------------- | :----------------- | :------------------------------ |
 
-| 1        | Login bug             | Closed          | High           | 1             | 2025-12-21 16:27           |
+| 1             | Login bug                | Closed            | High              | 1                  | 2025-12-21 16:27                |
 
-| 2        | Login with false infos| Open            | Medium         | 3             | 2025-12-27 16:41           |
+| 2             | Login with false infos   | Open              | Medium            | 3                  | 2025-12-27 16:41                |
 
 
 
@@ -241,13 +241,13 @@ WHERE assigned_to IS NULL;
 
 
 ## Business Insights
-|       **Query**     |         **Business Question**           |            **What It Tells Us**           |
+|       **Query**     |         **Business Question**           |            **What It Tells Us**                    |
 | :------------------ | :-------------------------------------- | :------------------------------------------------- |
 | Bugs by Status      | How healthy is our development process? | Too many "Open" bugs = backlog risk                |
-| Bugs by Priority    | Are we focusing on critical issues?     | High/Critical bugs need immediate attention |
-| Developer Workload  | Who is overloaded?                      | Balance assignments across team                |
+| Bugs by Priority    | Are we focusing on critical issues?     | High/Critical bugs need immediate attention        |
+| Developer Workload  | Who is overloaded?                      | Balance assignments across team                    |
 | Aging Bugs          | Which bugs are stuck?                   | Old "Open" bugs need priority                      |
-| Monthly Trends      | Is bug reporting increasing?            | Spike might indicate quality issues              |
+| Monthly Trends      | Is bug reporting increasing?            | Spike might indicate quality issues                |
 | Unassigned Bugs     | Are bugs slipping through?              | Every bug needs an owner                           |
 
 
