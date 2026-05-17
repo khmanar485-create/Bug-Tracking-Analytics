@@ -1,47 +1,26 @@
-\# Bug Tracking \& Analysis System
+# Bug Tracking & Analysis System
 
-
-
-
-\## Project Description
-
-
+## Project Description
 
 This project is a bug tracking system designed to store, manage, and analyze software bugs for developers.
 
 It demonstrates database design, SQL analytics, and business insights for software quality management.
 
+**Purpose:**
 
+- Track bug status, priority, and assignments
+- Analyze workload distribution
+- Identify aging bugs and backlog risks
+- Showcase SQL and data analytics skills
 
-\*\*Purpose:\*\*
+## Tech Stack
 
+- Java (Eclipse IDE)
+- PostgreSQL
+- SQL
+- Optional Visualization: Power BI / Tableau
 
-
-\- Track bug status, priority, and assignments
-
-\- Analyze workload distribution
-
-\- Identify aging bugs and backlog risks
-
-\- Showcase SQL and data analytics skills
-
-
-
-\## Tech Stack
-
-
-
-\- Java (Eclipse IDE)
-
-\- PostgreSQL
-
-\- SQL
-
-\- Optional Visualization: Power BI / Tableau
-
-
-
-\## Application Screenshots
+## Application Screenshots
 
 ![Main Menu](screenshots/main_menu.png)
 *Figure 1: Main menu with all options*
@@ -52,97 +31,60 @@ It demonstrates database design, SQL analytics, and business insights for softwa
 ![View Bugs](screenshots/view_bugs.png)
 *Figure 3: List of all bugs in the system*
 
+## Database Schema
 
+### users table
 
-\## Database Schema
+| **Column** | **Type** | **Description** |
+| :--- | :--- | :--- |
+| user_id | integer | Primary key |
+| name | varchar | Developer name |
 
+### bugs table
 
+| **Column** | **Type** | **Description** |
+| :--- | :--- | :--- |
+| bug_id | integer | Primary key |
+| title | varchar | Short bug title |
+| description | text | Detailed bug description |
+| status | varchar | Bug status ('Open', 'In progress', 'Resolved', 'Closed') |
+| priority | varchar | Bug priority ('Low', 'Medium', 'High', 'Critical') |
+| assigned_to | integer | FK → users.user_id |
+| created_at | timestamp | Bug creation timestamp |
 
-\### users table
+**Relationships:**
 
+* 'bugs.assigned_to' → 'users.user_id' (one bug is assigned to one developer)
 
+## Sample Data
 
-|  **Column**  |  **Type**  |  **Description**  |
-| :----------- | :--------- | :---------------- |
-| user_id      | integer    | Primary key       |
-| name         | varchar    | Developer name    |
+### Users
 
+| user_id | name |
+| :--- | :--- |
+| 1 | Alice |
+| 2 | Bob |
+| 3 | Charlie |
 
+### Bugs
 
-\### bugs table
+| bug_id | title | status | priority | assigned_to | created_at |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| 1 | Login bug | Closed | High | 1 | 2025-12-21 16:27 |
+| 2 | Login with false infos | Open | Medium | 3 | 2025-12-27 16:41 |
 
+## SQL Analysis Queries
 
-
-|  **Column**       |  **Type**       |  **Description**                                         |
-| :---------------- | :-------------- | :------------------------------------------------------- |
-| bug_id            | integer         | Primary key                                              |
-| title             | varchar         | Short bug title                                          |
-| description       | text            | Detailed bug description                                 |
-| status            | varchar         | Bug status ('Open', 'In progress', 'Resolved', 'Closed') |
-| priority          | varchar         | Bug priority ('Low', 'Medium', 'High', 'Critical')       |
-| assigned_to       | integer         | FK → users.user_id                                       |
-| created_at        | timestamp       | Bug creation timestamp                                   |
-
-
-
-
-
-\*\*Relationships:\*\*
-
-* 'bugs.assigned\_to' → 'users.user\_id' (one bug is assigned to one developer)
-
-
-
-\## Sample Data
-
-
-
-\### Users
-
-
-
-|  **user_id**    |  **name**     |
-| :-------------- | :------------ |
-| 1               | Alice         |
-| 2               | Bob           |
-| 3               | Charlie       |
-
-
-
-
-
-\### Bugs
-
-
-
-|  **bug_id**   |  **title**               |  **status**       |  **priority**     |  **assigned_to**   |  **created_at**                 |
-| :------------ | :----------------------- | :---------------- | :---------------- | :----------------- | :------------------------------ |
-| 1             | Login bug                | Closed            | High              | 1                  | 2025-12-21 16:27                |
-| 2             | Login with false infos   | Open              | Medium            | 3                  | 2025-12-27 16:41                |
-
-
-
-
-
-\## SQL Analysis Queries
-
-
-
-1\. \*\*Bugs by Status\*\*
+1. **Bugs by Status**
 
 ```sql
-
-SELECT status, COUNT(\*) AS bug_count
-
+SELECT status, COUNT(*) AS bug_count
 FROM public.bugs
-
 GROUP BY status;
 
-```
 
 
-
-2\. \*\*Bugs by Priority\*\*
+2. **Bugs by Priority**
 
 ```sql
 
@@ -156,7 +98,7 @@ GROUP BY priority;
 
 
 
-3\. \*\*Developer Workload\*\*
+3. **Developer Workload**
 
 ```sql
 
@@ -174,7 +116,7 @@ ORDER BY assigned_bugs DESC;
 
 
 
-4\. \*\*Aging/Open Bugs\*\*
+4. **Aging/Open Bugs**
 
 ```sql
 
@@ -192,7 +134,7 @@ ORDER BY days_open DESC;
 
 
 
-5\. \*\*Monthly Bug Trend\*\*
+5. **Monthly Bug Trend**
 
 ```sql
 
@@ -208,7 +150,7 @@ ORDER BY month;
 
 
 
-6\. \*\*Unassigned Bugs\*\*
+6. **Unassigned Bugs**
 
 ```sql
 
